@@ -38,21 +38,107 @@ collisionsMap.forEach((row, i) => {
 
 console.log(boundaries);
 
+// //---------------------------------------------- CREATE WATER MAP
+// const waterImg = new Image();
+// waterImg.src = "/assets/background animations/water.png";
+// const testwaterImg = new Image();
+// testwaterImg.src = "/assets/background animations/water.png";
+// //create the 2d map array from exported json map file
+// const waterMap = [];
+// for (let i = 0; i < water.length; i += 60) {
+//   waterMap.push(water.slice(i, i + 60));
+// }
+
+// //create an array of drawn boundary squares
+// const waterArr = [];
+// const waterImageArray = [];
+// //loop over collisions map and create boundaries -> add them to boundaries arr
+// waterMap.forEach((row, i) => {
+//   row.forEach((symbol, j) => {
+//     //5036 is from the collisions js created from json file
+//     let waterIndex = 0;
+//     if (symbol === 1243) {
+//       waterImageArray.push(new Image());
+//       waterImageArray.forEach((img) => {
+//         img.src = "/assets/background animations/water.png";
+//       });
+//       waterArr.push(
+//         new Water({
+//           position: {
+//             x: j * 32 + offset.x,
+//             y: i * 32 + offset.y,
+//           },
+//           image: waterImageArray[waterIndex],
+//           moving: true,
+//           frames: { max: 8 },
+//         })
+//       );
+//       waterIndex += 1;
+//     }
+//   });
+// });
+
+// //////testinggg
+// console.log(waterArr);
+// console.log(waterImageArray);
+
+// const testWaterArr = [
+//   new Water({
+//     position: {
+//       x: 200,
+//       y: 200,
+//     },
+//     image: waterImg,
+//     moving: true,
+//     frames: { max: 8 },
+//     scale: { max: 2 },
+//   }),
+//   new Water({
+//     position: {
+//       x: 200,
+//       y: 200,
+//     },
+//     image: testwaterImg,
+//     moving: true,
+//     frames: { max: 8 },
+//     scale: { max: 2 },
+//   }),
+//   new Water({
+//     position: {
+//       x: 200,
+//       y: 264,
+//     },
+//     image: waterImg,
+//     moving: true,
+//     frames: { max: 8 },
+//     scale: { max: 2 },
+//   }),
+// ];
+
 //---------------------------------------------- IMAGE IMPORTS
 const image = new Image();
-image.src = "/assets/cafecito-village/cafecito_village.png";
-
+image.src = "/assets/cafecito-village/cafecito_village_test.png";
+//PLAYER MOVING
 const playerUpImg = new Image();
 playerUpImg.src = "/assets/player_up.png";
-
 const playerDownImg = new Image();
 playerDownImg.src = "/assets/player_down.png";
-
 const playerLeftImg = new Image();
 playerLeftImg.src = "/assets/player_left.png";
-
 const playerRightImg = new Image();
 playerRightImg.src = "/assets/player_right.png";
+//PLAYER ATTACK
+const playerAttackUp = new Image();
+playerAttackUp.src = "/assets/player/attack animations/player_attack_up.png";
+const playerAttackDown = new Image();
+playerAttackDown.src =
+  "/assets/player/attack animations/player_attack_down.png";
+const playerAttackLeft = new Image();
+playerAttackLeft.src =
+  "/assets/player/attack animations/player_attack_left.png";
+const playerAttackRight = new Image();
+playerAttackRight.src =
+  "/assets/player/attack animations/player_attack_right.png";
 
 const foregroundImg = new Image();
 foregroundImg.src = "/assets/cafecito-village/cafecito_village_foreground.png";
@@ -66,6 +152,45 @@ chickenRightImg.src = "/assets/chicken/chicken_right.png";
 
 const kidSparImg = new Image();
 kidSparImg.src = "/assets/kid/kid_sparring.png";
+
+const blacksmithImg = new Image();
+blacksmithImg.src = "/assets/background animations/blacksmith/blacksmith.png";
+
+const attentionIconImg = new Image();
+attentionIconImg.src =
+  "/assets/background animations/icons/attention/npc-icon-attention.png";
+
+//ASSETS
+const bonfireImg = new Image();
+bonfireImg.src = "/assets/placeables/bonfire/campfire 1-3.png";
+
+const treeOneImg = new Image();
+treeOneImg.src = "/assets/background animations/tree/Animated Tree1.png";
+const treeTwoImg = new Image();
+treeTwoImg.src = "/assets/background animations/tree/Animated Tree1.png";
+const treeWestTopImg = new Image();
+treeWestTopImg.src = "/assets/background animations/tree/Animated Tree1.png";
+const treeWestTopTwoImg = new Image();
+treeWestTopTwoImg.src = "/assets/background animations/tree/Animated Tree1.png";
+const treeSouthEastImg = new Image();
+treeSouthEastImg.src = "/assets/background animations/tree/Animated Tree1.png";
+
+const waterWellImage = new Image();
+waterWellImage.src = "/assets/background animations/well/water well.png";
+
+const westParticleOneImg = new Image();
+westParticleOneImg.src =
+  "/assets/background animations/particles/nature particle.png";
+
+const forgeImg = new Image();
+forgeImg.src = "/assets/background animations/blacksmith/forge.png";
+const forgeSmokeImg = new Image();
+forgeSmokeImg.src = "/assets/background animations/blacksmith/smoke.png";
+
+//ENEMIES
+const slimeOneRightImage = new Image();
+slimeOneRightImage.src = "/assets/enemies/slime/slime_right.png";
+
 //---------------------------------------------- CREATE OBJECTS
 //create player
 const player = new Sprite({
@@ -74,6 +199,7 @@ const player = new Sprite({
     y: canvas.height / 2,
   },
   image: playerDownImg,
+  facingPrevious: playerDownImg,
   frames: { max: 4 }, //frames from character sprite sheet to cut out
   scale: { max: 2 }, //set to scale the sprite to make it bigger
   sprites: {
@@ -82,6 +208,19 @@ const player = new Sprite({
     left: playerLeftImg,
     right: playerRightImg,
   },
+});
+
+//create enemies
+//---slime
+const slimeOne = new Sprite({
+  position: {
+    x: 500,
+    y: 300,
+  },
+  image: slimeOneRightImage,
+  frames: { max: 4 },
+  scale: { max: 3 },
+  moving: true,
 });
 
 //create background world image
@@ -123,14 +262,170 @@ const chicken = new Sprite({
 //create kid
 const kid = new Sprite({
   position: {
-    x: 400,
-    y: canvas.height / 2,
+    x: 1028,
+    y: -400,
   },
   image: kidSparImg,
   frames: { max: 4 },
   scale: { max: 2 },
   moving: true,
 });
+
+//create bonfire
+const bonfire = new Sprite({
+  position: {
+    x: 460,
+    y: 339,
+  },
+  image: bonfireImg,
+  frames: { max: 8 },
+  scale: { max: 2 },
+  moving: true,
+});
+
+//trees
+const treeOne = new Sprite({
+  position: {
+    x: 1200,
+    y: -625,
+  },
+  image: treeOneImg,
+  frames: { max: 8 },
+  scale: { max: 2 },
+  moving: true,
+});
+const treeTwo = new Sprite({
+  position: {
+    x: 1330,
+    y: -690,
+  },
+  image: treeTwoImg,
+  frames: { max: 8 },
+  scale: { max: 2 },
+  moving: true,
+});
+const treeWestTop = new Sprite({
+  position: {
+    x: 430,
+    y: -685,
+  },
+  image: treeWestTopImg,
+  frames: { max: 8 },
+  scale: { max: 2 },
+  moving: true,
+});
+const treeWestTopTwo = new Sprite({
+  position: {
+    x: 740,
+    y: -750,
+  },
+  image: treeWestTopTwoImg,
+  frames: { max: 8 },
+  scale: { max: 2 },
+  moving: true,
+});
+const treeSouthEast = new Sprite({
+  position: {
+    x: 2730,
+    y: 0,
+  },
+  image: treeSouthEastImg,
+  frames: { max: 8 },
+  scale: { max: 2 },
+  moving: true,
+});
+
+//well
+const waterWell = new Sprite({
+  position: {
+    x: 618,
+    y: -520,
+  },
+  image: waterWellImage,
+  frames: { max: 29 },
+  scale: { max: 2 },
+  moving: true,
+});
+
+//particles
+const westParticleOne = new Sprite({
+  position: {
+    x: 400,
+    y: 10,
+  },
+  image: westParticleOneImg,
+  frames: { max: 24 },
+  scale: { max: 2 },
+  moving: true,
+  velocity: 25,
+});
+
+//blacksmith
+const blacksmith = new Sprite({
+  position: {
+    x: 2470,
+    y: -525,
+  },
+  image: blacksmithImg,
+  frames: { max: 13 },
+  scale: { max: 1.5 },
+  moving: true,
+});
+
+const forge = new Sprite({
+  position: {
+    x: 2315,
+    y: -540,
+  },
+  image: forgeImg,
+  frames: { max: 8 },
+  scale: { max: 2 },
+  moving: true,
+});
+
+const forgeSmoke = new Sprite({
+  position: {
+    x: 2310,
+    y: -850,
+  },
+  image: forgeSmokeImg,
+  frames: { max: 16 },
+  scale: { max: 2 },
+  moving: true,
+});
+
+const attentionIcon = new Sprite({
+  position: {
+    x: 2565,
+    y: -505,
+  },
+  image: attentionIconImg,
+  frames: { max: 8 },
+  scale: { max: 1 },
+  moving: true,
+});
+
+//---------------------------------------------- ENEMY CREATION
+let enemyArr = [];
+let enemyImgArr = [];
+
+function createSlime() {
+  enemyImgArr.push(new Image());
+  enemyImgArr[0].src = "/assets/enemies/slime/slime_right.png";
+
+  enemyArr.push(
+    new Sprite({
+      position: {
+        x: 700,
+        y: 300,
+      },
+      image: enemyImgArr[0],
+      frames: { max: 4 },
+      scale: { max: 3 },
+      moving: true,
+    })
+  );
+}
 
 //---------------------------------------------- KEEP TRACK OF KEY PRESSES
 
@@ -147,6 +442,9 @@ const keys = {
   ArrowRight: {
     pressed: false,
   },
+  Space: {
+    pressed: false,
+  },
 };
 
 //------------->>>>>>>>>>>>>> TEST <<<<-------- REMOVE later >>>>><><><><><><
@@ -155,7 +453,26 @@ const keys = {
 
 //---------------------------------------------- MOVABLES
 //create an array of items that will be moving on screen
-const movables = [background, ...boundaries, foreground, chicken, kid];
+const movables = [
+  background,
+  ...boundaries,
+  foreground,
+  chicken,
+  kid,
+  bonfire,
+  treeOne,
+  treeTwo,
+  treeWestTop,
+  treeWestTopTwo,
+  treeSouthEast,
+  waterWell,
+  westParticleOne,
+  blacksmith,
+  forge,
+  forgeSmoke,
+  slimeOne,
+  attentionIcon,
+];
 
 //---------------------------------------------- FUNCTIONS
 function rectangularCollision({ rectangle1, rectangle2 }) {
@@ -167,12 +484,36 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
     rectangle1.position.y + rectangle1.height + 55 >= rectangle2.position.y
   );
 }
+function enemyCollision({ rectangle1, rectangle2 }) {
+  return (
+    rectangle1.position.x + rectangle1.width >= rectangle2.position.x &&
+    rectangle1.position.x <= rectangle2.position.x + rectangle2.width &&
+    rectangle1.position.y <= // added 96 because of player sprite sizing so only bottom half collides with y
+      rectangle2.position.y + rectangle2.height &&
+    rectangle1.position.y + rectangle1.height >= rectangle2.position.y
+  );
+}
 
 //---------------------------------------------- ANIMATION LOOP
 function animate() {
   window.requestAnimationFrame(animate);
   //draw background
   background.draw();
+  //draw trees
+  treeWestTop.draw();
+  treeWestTopTwo.draw();
+  treeTwo.draw();
+  treeOne.draw();
+  //draw well
+  waterWell.draw();
+  //draw blacksmith
+  blacksmith.draw();
+  //draw forge
+  forge.draw();
+  //draw forge smoke
+  forgeSmoke.draw();
+  //draw attention icon for blacksmith
+  attentionIcon.draw();
   //draw boundaries
   boundaries.forEach((boundary) => {
     boundary.draw(boundary);
@@ -181,10 +522,28 @@ function animate() {
   chicken.draw();
   //draw kid
   kid.draw();
+  //draw bonfire
+  bonfire.draw();
+  //draw slime enemies
+  enemyArr.forEach((enemy, i) => {
+    //logic behind defeated enemies disappearing
+    console.log(enemy.health);
+    if (enemy.health <= 0) {
+      enemyArr.splice(i, i + 1);
+      player.dinero += 5;
+    }
+    enemy.draw(enemy);
+  });
+  //draw particles
+  westParticleOne.draw();
   //draw player
-  player.draw();
+  if (!keys.Space.pressed) {
+    player.draw();
+  }
   //draw foreground
   foreground.draw();
+  //trees with occlusion
+  treeSouthEast.draw();
   //move background and collision boundaries & check for collisions
   let moving = true;
   //set player moving to false to stop moving animation, only plays when keydown in event listener if statement
@@ -211,9 +570,16 @@ function animate() {
       }
     }
     if (moving) {
+      enemyArr.forEach((enemy) => {
+        enemy.position.y += 3;
+      });
       movables.forEach((movable) => {
         movable.position.y += 3;
         player.image = player.sprites.up;
+        //set previous direction, so it can be reset after attack
+        player.facingPrevious = player.sprites.up;
+        //set which way player faces, used for attack
+        player.facing = "up";
         player.moving = true;
       });
     }
@@ -239,9 +605,16 @@ function animate() {
       }
     }
     if (moving) {
+      enemyArr.forEach((enemy) => {
+        enemy.position.y -= 3;
+      });
       movables.forEach((movable) => {
         movable.position.y -= 3;
         player.image = player.sprites.down;
+        //set previous direction, so it can be reset after attack
+        player.facingPrevious = player.sprites.down;
+        //set which way player faces, used for attack
+        player.facing = "down";
         player.moving = true;
       });
     }
@@ -267,9 +640,16 @@ function animate() {
       }
     }
     if (moving) {
+      enemyArr.forEach((enemy) => {
+        enemy.position.x += 3;
+      });
       movables.forEach((movable) => {
         movable.position.x += 3;
         player.image = player.sprites.left;
+        //set previous direction, so it can be reset after attack
+        player.facingPrevious = player.sprites.left;
+        //set which way player faces, used for attack
+        player.facing = "left";
         player.moving = true;
       });
     }
@@ -295,11 +675,34 @@ function animate() {
       }
     }
     if (moving) {
+      enemyArr.forEach((enemy) => {
+        enemy.position.x -= 3;
+      });
       movables.forEach((movable) => {
         movable.position.x -= 3;
         player.image = player.sprites.right;
+        //set previous direction, so it can be reset after attack
+        player.facingPrevious = player.sprites.right;
+        //set which way player faces, used for attack
+        player.facing = "right";
         player.moving = true;
       });
+    }
+  }
+
+  if (keys.Space.pressed) {
+    player.attack();
+  }
+
+  //$$$$$$$ ENEMY ATTACK LOGIC $$$$$$$$
+
+  for (let i = 0; i < enemyArr.length; i++) {
+    const enemy = enemyArr[i];
+    if (
+      enemyCollision({ rectangle1: player, rectangle2: enemy }) &&
+      keys.Space.pressed
+    ) {
+      enemy.health -= player.damage;
     }
   }
 }
@@ -325,6 +728,9 @@ window.addEventListener("keydown", (event) => {
       keys.ArrowRight.pressed = true;
       lastKeyPressed = "ArrowRight";
       break;
+    case "Space":
+      keys.Space.pressed = true;
+      break;
   }
 });
 window.addEventListener("keyup", (event) => {
@@ -340,6 +746,9 @@ window.addEventListener("keyup", (event) => {
       break;
     case "ArrowRight":
       keys.ArrowRight.pressed = false;
+      break;
+    case "Space":
+      keys.Space.pressed = false;
       break;
   }
 });
