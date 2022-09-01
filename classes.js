@@ -127,79 +127,13 @@ class Boundary {
   }
 }
 
-// class Water {
-//   constructor({
-//     position,
-//     velocity,
-//     image,
-//     frames = { max: 1 },
-//     scale = { max: 1 },
-//     sprites = [],
-//     moving = false,
-//     travelDistance = 0,
-//     travelDirection = "",
-//   }) {
-//     this.position = position;
-//     this.velocity = velocity;
-//     this.image = image;
-//     this.frames = { ...frames, val: 0, elapsed: 0 };
-//     this.scale = scale;
-//     this.image.onload = () => {
-//       this.width = this.image.width / this.frames.max;
-//       this.height = this.image.height;
-//     };
-//     this.moving = moving;
-//     this.sprites = sprites;
-//     this.travelDistance = travelDistance;
-//     this.distanceTravelled = 0;
-//     this.travelDirection = travelDirection;
-//   }
+class Ui {
+  constructor({ text = "", backgroundImg, portraitImg, controlsImg }) {
+    this.text = text;
+    this.backgroundImg = backgroundImg;
+    this.portraitImg = portraitImg;
+    this.controlsImg = controlsImg;
+  }
 
-//   draw() {
-//     ctx.drawImage(
-//       this.image,
-//       this.frames.val * this.width,
-//       0,
-//       this.image.width / this.frames.max,
-//       this.image.height,
-//       this.position.x,
-//       this.position.y,
-//       (this.image.width / this.frames.max) * this.scale.max,
-//       this.image.height * this.scale.max
-//     );
-
-//     if (this.moving) {
-//       if (this.frames.max > 1) {
-//         this.frames.elapsed++;
-//       }
-//       if (this.frames.elapsed % 10 === 0) {
-//         if (this.frames.val < this.frames.max - 1) {
-//           this.frames.val++;
-//         } else {
-//           this.frames.val = 0;
-//         }
-//       }
-//       if (this.travelDistance) {
-//         if (this.travelDirection == "left") {
-//           this.image = this.sprites.left;
-//           if (this.distanceTravelled < this.travelDistance) {
-//             this.position.x -= 0.5;
-//             this.distanceTravelled += 1;
-//           } else {
-//             this.travelDirection = "right";
-//             this.distanceTravelled = 0;
-//           }
-//         } else if (this.travelDirection == "right") {
-//           this.image = this.sprites.right;
-//           if (this.distanceTravelled < this.travelDistance) {
-//             this.position.x += 0.5;
-//             this.distanceTravelled += 1;
-//           } else {
-//             this.travelDirection = "left";
-//             this.distanceTravelled = 0;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
+  draw() {}
+}

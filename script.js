@@ -5,6 +5,8 @@ const ctx = canvas.getContext("2d");
 canvas.width = 1024;
 canvas.height = 576;
 
+audio.Title.play();
+
 //---------------------------------------------- CREATE COLLISIONS MAP
 //create the 2d map array from exported json map file
 const collisionsMap = [];
@@ -445,6 +447,15 @@ const keys = {
   Space: {
     pressed: false,
   },
+  Enter: {
+    pressed: false,
+  },
+};
+
+//---------------------------------------------- KEEP TRACK OF GAME STATS
+
+const gameStat = {
+  speaking: false,
 };
 
 //------------->>>>>>>>>>>>>> TEST <<<<-------- REMOVE later >>>>><><><><><><
@@ -530,6 +541,7 @@ function animate() {
     console.log(enemy.health);
     if (enemy.health <= 0) {
       enemyArr.splice(i, i + 1);
+      playDmg();
       player.dinero += 5;
     }
     enemy.draw(enemy);
@@ -695,7 +707,11 @@ function animate() {
   }
 
   //$$$$$$$ ENEMY ATTACK LOGIC $$$$$$$$
-
+  function playDmg() {
+    setTimeout(() => {
+      audio.SlimeDmg.play();
+    }, 300);
+  }
   for (let i = 0; i < enemyArr.length; i++) {
     const enemy = enemyArr[i];
     if (
@@ -704,6 +720,28 @@ function animate() {
     ) {
       enemy.health -= player.damage;
     }
+  }
+
+  //-000-0-0-00-0-0-0-0
+  if (
+    enemyCollision({ rectangle1: player, rectangle2: kid }) &&
+    keys.Enter.pressed == true &&
+    !gameStat.speaking
+  ) {
+    keys.Enter.pressed = false;
+    gameStat.speaking = true;
+    showChatUi();
+    kidScriptIndex = kidScriptCount % kidSpeak.length;
+    writeText(kidSpeak[kidScriptIndex]);
+    kidScriptCount += 1;
+  } else if (
+    enemyCollision({ rectangle1: player, rectangle2: kid }) &&
+    gameStat.speaking == true &&
+    keys.Enter.pressed == true
+  ) {
+    hideChatUi();
+    gameStat.speaking = false;
+    keys.Enter.pressed = false;
   }
 }
 animate();
@@ -730,6 +768,10 @@ window.addEventListener("keydown", (event) => {
       break;
     case "Space":
       keys.Space.pressed = true;
+      audio.Punch.play();
+      break;
+    case "Enter":
+      keys.Enter.pressed = true;
       break;
   }
 });
@@ -750,5 +792,16 @@ window.addEventListener("keyup", (event) => {
     case "Space":
       keys.Space.pressed = false;
       break;
+    case "Enter":
+      keys.Enter.pressed = false;
+      break;
+  }
+});
+
+let clicked = false;
+addEventListener("click", () => {
+  if (!clicked) {
+    audio.Title.play();
+    clicked = true;
   }
 });

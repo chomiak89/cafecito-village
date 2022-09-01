@@ -1,3 +1,94 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen&display=swap");
+
+html {
+  width: 100vw;
+  height: 100vh;
   background-color: black;
+  position: relative;
+}
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  text-align: center;
+  background-image: url("/assets/htmlRelated/images/psp.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.title_screen {
+  width: 1024px;
+  height: 576px;
+  background-image: url("/assets/htmlRelated/images/start_screen.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  transition: all 1s linear;
+  z-index: 4;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.start {
+  margin-top: 45%;
+  color: rgb(197, 176, 54);
+  font-family: "Silkscreen", cursive;
+  font-size: 3rem;
+  background: black;
+}
+.hidden {
+  display: none;
+}
+
+.visuallyhidden {
+  opacity: 0;
+}
+.start:hover {
+  color: red;
+}
+
+.welcome {
+  width: 1024px;
+  height: 576px;
+  background-color: black;
+  transition: all 1s linear;
+  z-index: 3;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.welcome_text {
+  color: white;
+  font-family: "Silkscreen", cursive;
+  margin-top: 20%;
+  transition: all 1s linear;
+}
+canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.chatUi {
+  width: 960px;
+  height: 192px;
+  background-image: url("./assets/speechBackground.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 67%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 1s linear;
+  font-family: "Silkscreen", cursive;
+  text-align: center;
+  z-index: 5;
+}
+
+.chatText {
+  width: 90%;
+  margin: 5% auto 0 auto;
 }
