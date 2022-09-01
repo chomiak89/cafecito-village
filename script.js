@@ -466,7 +466,7 @@ let enemyImgArr = [];
 
 function createSlime(x, y) {
   enemyImgArr.push(new Image());
-  enemyImgArr[0].src = "/assets/enemies/slime/slime_right.png";
+  enemyImgArr[0].src = "./assets/enemies/slime/slime_right.png";
 
   enemyArr.push(
     new Sprite({

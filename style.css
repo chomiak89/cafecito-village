@@ -12,14 +12,14 @@ body {
   height: 100vh;
   position: relative;
   text-align: center;
-  background-image: url("/assets/htmlRelated/images/psp.png");
+  background-image: url("./assets/htmlRelated/images/psp.png");
   background-repeat: no-repeat;
   background-position: center;
 }
 .title_screen {
   width: 1024px;
   height: 576px;
-  background-image: url("/assets/htmlRelated/images/start_screen.png");
+  background-image: url("./assets/htmlRelated/images/start_screen.png");
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
