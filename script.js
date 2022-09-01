@@ -119,79 +119,93 @@ console.log(boundaries);
 
 //---------------------------------------------- IMAGE IMPORTS
 const image = new Image();
-image.src = "/assets/cafecito-village/cafecito_village_test.png";
+image.src = "./assets/cafecito-village/cafecito_village_test.png";
+const mapEndImg = new Image();
+mapEndImg.src = "./assets/map-end.png";
 //PLAYER MOVING
 const playerUpImg = new Image();
-playerUpImg.src = "/assets/player_up.png";
+playerUpImg.src = "./assets/player_up.png";
 const playerDownImg = new Image();
-playerDownImg.src = "/assets/player_down.png";
+playerDownImg.src = "./assets/player_down.png";
 const playerLeftImg = new Image();
-playerLeftImg.src = "/assets/player_left.png";
+playerLeftImg.src = "./assets/player_left.png";
 const playerRightImg = new Image();
-playerRightImg.src = "/assets/player_right.png";
+playerRightImg.src = "./assets/player_right.png";
 //PLAYER ATTACK
 const playerAttackUp = new Image();
-playerAttackUp.src = "/assets/player/attack animations/player_attack_up.png";
+playerAttackUp.src = "./assets/player/attackAnimations/player_attack_up.png";
 const playerAttackDown = new Image();
 playerAttackDown.src =
-  "/assets/player/attack animations/player_attack_down.png";
+  "./assets/player/attackAnimations/player_attack_down.png";
 const playerAttackLeft = new Image();
 playerAttackLeft.src =
-  "/assets/player/attack animations/player_attack_left.png";
+  "./assets/player/attackAnimations/player_attack_left.png";
 const playerAttackRight = new Image();
 playerAttackRight.src =
-  "/assets/player/attack animations/player_attack_right.png";
+  "./assets/player/attackAnimations/player_attack_right.png";
 
 const foregroundImg = new Image();
-foregroundImg.src = "/assets/cafecito-village/cafecito_village_foreground.png";
+foregroundImg.src = "./assets/cafecito-village/cafecito_village_foreground.png";
 
 //NPC
 const chickenLeftImg = new Image();
-chickenLeftImg.src = "/assets/chicken/chicken_left.png";
+chickenLeftImg.src = "./assets/chicken/chicken_left.png";
 
 const chickenRightImg = new Image();
-chickenRightImg.src = "/assets/chicken/chicken_right.png";
+chickenRightImg.src = "./assets/chicken/chicken_right.png";
 
 const kidSparImg = new Image();
-kidSparImg.src = "/assets/kid/kid_sparring.png";
+kidSparImg.src = "./assets/kid/kid_sparring.png";
 
 const blacksmithImg = new Image();
-blacksmithImg.src = "/assets/background animations/blacksmith/blacksmith.png";
+blacksmithImg.src = "./assets/backgroundAnimations/blacksmith/blacksmith.png";
 
 const attentionIconImg = new Image();
 attentionIconImg.src =
-  "/assets/background animations/icons/attention/npc-icon-attention.png";
+  "./assets/backgroundAnimations/icons/attention/npc-icon-attention.png";
+
+const femaleNpcUpImg = new Image();
+femaleNpcUpImg.src = "./assets/femaleNpc/female_npc_up.png";
+const femaleNpcDownImg = new Image();
+femaleNpcDownImg.src = "./assets/femaleNpc/female_npc_down.png";
+const femaleNpcLeftImg = new Image();
+femaleNpcLeftImg.src = "./assets/femaleNpc/female_npc_left.png";
+const femaleNpcRightImg = new Image();
+femaleNpcRightImg.src = "./assets/femaleNpc/female_npc_right.png";
 
 //ASSETS
 const bonfireImg = new Image();
-bonfireImg.src = "/assets/placeables/bonfire/campfire 1-3.png";
+bonfireImg.src = "./assets/placeables/bonfire/campfire 1-3.png";
 
 const treeOneImg = new Image();
-treeOneImg.src = "/assets/background animations/tree/Animated Tree1.png";
+treeOneImg.src = "./assets/backgroundAnimations/tree/Animated Tree1.png";
 const treeTwoImg = new Image();
-treeTwoImg.src = "/assets/background animations/tree/Animated Tree1.png";
+treeTwoImg.src = "./assets/backgroundAnimations/tree/Animated Tree1.png";
 const treeWestTopImg = new Image();
-treeWestTopImg.src = "/assets/background animations/tree/Animated Tree1.png";
+treeWestTopImg.src = "./assets/backgroundAnimations/tree/Animated Tree1.png";
 const treeWestTopTwoImg = new Image();
-treeWestTopTwoImg.src = "/assets/background animations/tree/Animated Tree1.png";
+treeWestTopTwoImg.src = "./assets/backgroundAnimations/tree/Animated Tree1.png";
 const treeSouthEastImg = new Image();
-treeSouthEastImg.src = "/assets/background animations/tree/Animated Tree1.png";
+treeSouthEastImg.src = "./assets/backgroundAnimations/tree/Animated Tree1.png";
 
 const waterWellImage = new Image();
-waterWellImage.src = "/assets/background animations/well/water well.png";
+waterWellImage.src = "./assets/backgroundAnimations/well/water well.png";
 
 const westParticleOneImg = new Image();
 westParticleOneImg.src =
-  "/assets/background animations/particles/nature particle.png";
+  "./assets/backgroundAnimations/particles/nature particle.png";
 
 const forgeImg = new Image();
-forgeImg.src = "/assets/background animations/blacksmith/forge.png";
+forgeImg.src = "./assets/backgroundAnimations/blacksmith/forge.png";
 const forgeSmokeImg = new Image();
-forgeSmokeImg.src = "/assets/background animations/blacksmith/smoke.png";
+forgeSmokeImg.src = "./assets/backgroundAnimations/blacksmith/smoke.png";
+
+const wg1img = new Image();
+wg1img.src = "./assets/backgroundAnimations/grass/grass1.png";
 
 //ENEMIES
 const slimeOneRightImage = new Image();
-slimeOneRightImage.src = "/assets/enemies/slime/slime_right.png";
+slimeOneRightImage.src = "./assets/enemies/slime/slime_right.png";
 
 //---------------------------------------------- CREATE OBJECTS
 //create player
@@ -210,6 +224,26 @@ const player = new Sprite({
     left: playerLeftImg,
     right: playerRightImg,
   },
+});
+
+//create femaile npc
+const femaleNpc = new Sprite({
+  position: {
+    x: 690,
+    y: -350,
+  },
+  image: femaleNpcDownImg,
+  frames: { max: 4 },
+  scale: { max: 2 },
+  sprites: {
+    up: femaleNpcUpImg,
+    down: femaleNpcDownImg,
+    left: femaleNpcLeftImg,
+    right: femaleNpcRightImg,
+  },
+  moving: true,
+  travelDirection: "down",
+  type: "npc",
 });
 
 //create enemies
@@ -232,6 +266,14 @@ const background = new Sprite({
     y: offset.y,
   },
   image: image,
+});
+
+const mapEnd = new Sprite({
+  position: {
+    x: 3320,
+    y: -500,
+  },
+  image: mapEndImg,
 });
 
 //create foreground world image
@@ -407,19 +449,30 @@ const attentionIcon = new Sprite({
   moving: true,
 });
 
+const wg1 = new Sprite({
+  position: {
+    x: 400,
+    y: 350,
+  },
+  image: wg1img,
+  frames: { max: 16 },
+  scale: { max: 2 },
+  moving: true,
+});
+
 //---------------------------------------------- ENEMY CREATION
 let enemyArr = [];
 let enemyImgArr = [];
 
-function createSlime() {
+function createSlime(x, y) {
   enemyImgArr.push(new Image());
   enemyImgArr[0].src = "/assets/enemies/slime/slime_right.png";
 
   enemyArr.push(
     new Sprite({
       position: {
-        x: 700,
-        y: 300,
+        x: x,
+        y: y,
       },
       image: enemyImgArr[0],
       frames: { max: 4 },
@@ -428,6 +481,11 @@ function createSlime() {
     })
   );
 }
+
+createSlime(2600, 150);
+setTimeout(() => {
+  createSlime(2200, 50);
+}, 500);
 
 //---------------------------------------------- KEEP TRACK OF KEY PRESSES
 
@@ -456,6 +514,7 @@ const keys = {
 
 const gameStat = {
   speaking: false,
+  running: false,
 };
 
 //------------->>>>>>>>>>>>>> TEST <<<<-------- REMOVE later >>>>><><><><><><
@@ -483,6 +542,9 @@ const movables = [
   forgeSmoke,
   slimeOne,
   attentionIcon,
+  mapEnd,
+  wg1,
+  femaleNpc,
 ];
 
 //---------------------------------------------- FUNCTIONS
@@ -510,6 +572,10 @@ function animate() {
   window.requestAnimationFrame(animate);
   //draw background
   background.draw();
+  //draw grass
+  wg1.draw();
+  //draw map end
+  mapEnd.draw();
   //draw trees
   treeWestTop.draw();
   treeWestTopTwo.draw();
@@ -533,6 +599,10 @@ function animate() {
   chicken.draw();
   //draw kid
   kid.draw();
+  //draw female npc
+  if (gameStat.running) {
+    femaleNpc.draw();
+  }
   //draw bonfire
   bonfire.draw();
   //draw slime enemies
@@ -722,7 +792,7 @@ function animate() {
     }
   }
 
-  //-000-0-0-00-0-0-0-0
+  //-chat related
   if (
     enemyCollision({ rectangle1: player, rectangle2: kid }) &&
     keys.Enter.pressed == true &&

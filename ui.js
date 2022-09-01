@@ -49,6 +49,7 @@ function cycleWelcome() {
   }, 3000);
   setTimeout(() => {
     hideUnhide(welcome);
+    gameStat.running = true;
   }, 4500);
 }
 

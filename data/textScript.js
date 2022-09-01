@@ -1,12 +1,12 @@
 let kidSpeak = [
   {
-    text: "When i grow up I want to be a knight!",
-  },
-  {
     text: "My mom tells me I am too young to drink cafecitos...",
   },
   {
     text: "But I drink them anyways, it helps me practice.",
+  },
+  {
+    text: "When i grow up I want to be a knight!",
   },
 ];
 

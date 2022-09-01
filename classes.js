@@ -14,6 +14,8 @@ class Sprite {
     health = 100,
     damage = 5,
     dinero = 0,
+    type = "",
+    npcDistance = 0,
   }) {
     this.position = position;
     this.facing = facing;
@@ -34,6 +36,8 @@ class Sprite {
     this.health = health;
     this.damage = damage;
     this.dinero = dinero;
+    this.type = type;
+    this.npcDistance = npcDistance;
   }
 
   draw() {
@@ -48,7 +52,11 @@ class Sprite {
       (this.image.width / this.frames.max) * this.scale.max,
       this.image.height * this.scale.max
     );
-    this.animationCheck();
+    if (this.type == "npc") {
+      this.npcDrawAnimate();
+    } else {
+      this.animationCheck();
+    }
   }
 
   attack() {
@@ -106,6 +114,46 @@ class Sprite {
             this.distanceTravelled = 0;
           }
         }
+      }
+    }
+  }
+
+  npcDrawAnimate() {
+    if (this.moving) {
+      if (this.frames.max > 1) {
+        this.frames.elapsed++;
+      }
+      if (this.frames.elapsed % this.velocity === 0) {
+        if (this.frames.val < this.frames.max - 1) {
+          this.frames.val++;
+        } else {
+          this.frames.val = 0;
+        }
+      }
+
+      if (this.npcDistance < 130) {
+        this.position.y += 0.5;
+        this.npcDistance += 0.5;
+      }
+      if (this.npcDistance >= 130 && this.npcDistance < 1000) {
+        this.image = this.sprites.right;
+        this.position.x += 0.5;
+        this.npcDistance += 0.5;
+      }
+      if (this.npcDistance >= 1000 && this.npcDistance < 1320) {
+        this.image = this.sprites.up;
+        this.position.y -= 0.5;
+        this.npcDistance += 0.5;
+      }
+      if (this.npcDistance >= 1320 && this.npcDistance < 1600) {
+        this.image = this.sprites.down;
+        this.position.y += 0.5;
+        this.npcDistance += 0.5;
+      }
+      if (this.npcDistance >= 1600 && this.npcDistance < 2300) {
+        this.image = this.sprites.right;
+        this.position.x += 0.5;
+        this.npcDistance += 0.5;
       }
     }
   }
