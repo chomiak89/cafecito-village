@@ -5,8 +5,6 @@ const ctx = canvas.getContext("2d");
 canvas.width = 1024;
 canvas.height = 576;
 
-audio.Title.play();
-
 //---------------------------------------------- CREATE COLLISIONS MAP
 //create the 2d map array from exported json map file
 const collisionsMap = [];
