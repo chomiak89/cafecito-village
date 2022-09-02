@@ -245,8 +245,8 @@ const femaleNpc = new Sprite({
     right: femaleNpcRightImg,
   },
   moving: true,
-  travelDirection: "down",
   type: "npc",
+  travelDirection: "right",
 });
 
 //duck npc
@@ -586,7 +586,6 @@ function enemyCollision({ rectangle1, rectangle2 }) {
 //---------------------------------------------- ANIMATION LOOP
 function animate() {
   window.requestAnimationFrame(animate);
-  console.log(femaleNpc.npcDistance);
   //draw background
   background.draw();
   //draw grass
@@ -627,7 +626,6 @@ function animate() {
   //draw slime enemies
   enemyArr.forEach((enemy, i) => {
     //logic behind defeated enemies disappearing
-    console.log(enemy.health);
     if (enemy.health <= 0) {
       enemyArr.splice(i, i + 1);
       playDmg();
@@ -660,7 +658,7 @@ function animate() {
             ...boundary,
             position: {
               x: boundary.position.x,
-              y: boundary.position.y + 3,
+              y: boundary.position.y + 1,
             },
           },
         })
@@ -672,10 +670,10 @@ function animate() {
     }
     if (moving) {
       enemyArr.forEach((enemy) => {
-        enemy.position.y += 3;
+        enemy.position.y += 1;
       });
       movables.forEach((movable) => {
-        movable.position.y += 3;
+        movable.position.y += 1;
         player.image = player.sprites.up;
         //set previous direction, so it can be reset after attack
         player.facingPrevious = player.sprites.up;
@@ -695,7 +693,7 @@ function animate() {
             ...boundary,
             position: {
               x: boundary.position.x,
-              y: boundary.position.y - 3,
+              y: boundary.position.y - 1,
             },
           },
         })
@@ -707,10 +705,10 @@ function animate() {
     }
     if (moving) {
       enemyArr.forEach((enemy) => {
-        enemy.position.y -= 3;
+        enemy.position.y -= 1;
       });
       movables.forEach((movable) => {
-        movable.position.y -= 3;
+        movable.position.y -= 1;
         player.image = player.sprites.down;
         //set previous direction, so it can be reset after attack
         player.facingPrevious = player.sprites.down;
@@ -729,7 +727,7 @@ function animate() {
           rectangle2: {
             ...boundary,
             position: {
-              x: boundary.position.x + 3,
+              x: boundary.position.x + 1,
               y: boundary.position.y,
             },
           },
@@ -742,10 +740,10 @@ function animate() {
     }
     if (moving) {
       enemyArr.forEach((enemy) => {
-        enemy.position.x += 3;
+        enemy.position.x += 1;
       });
       movables.forEach((movable) => {
-        movable.position.x += 3;
+        movable.position.x += 1;
         player.image = player.sprites.left;
         //set previous direction, so it can be reset after attack
         player.facingPrevious = player.sprites.left;
@@ -764,7 +762,7 @@ function animate() {
           rectangle2: {
             ...boundary,
             position: {
-              x: boundary.position.x - 3,
+              x: boundary.position.x - 1,
               y: boundary.position.y,
             },
           },
@@ -777,10 +775,10 @@ function animate() {
     }
     if (moving) {
       enemyArr.forEach((enemy) => {
-        enemy.position.x -= 3;
+        enemy.position.x -= 1;
       });
       movables.forEach((movable) => {
-        movable.position.x -= 3;
+        movable.position.x -= 1;
         player.image = player.sprites.right;
         //set previous direction, so it can be reset after attack
         player.facingPrevious = player.sprites.right;

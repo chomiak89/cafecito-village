@@ -3,7 +3,7 @@ class Sprite {
     position,
     facing = "down",
     facingPrevious,
-    velocity = 10,
+    velocity = 20,
     image,
     frames = { max: 1 },
     scale = { max: 1 },
@@ -131,41 +131,70 @@ class Sprite {
         }
       }
 
-      if (this.npcDistance <= 130) {
-        this.position.y += 0.5;
-        this.npcDistance += 0.5;
-      } else if (this.npcDistance >= 130.5 && this.npcDistance < 1000) {
-        this.image = this.sprites.right;
-        this.position.x += 0.5;
-        this.npcDistance += 0.5;
+      if (this.travelDirection == "right" && this.npcDistance < 2300) {
+        if (this.npcDistance < 130) {
+          this.image = this.sprites.down;
+          this.position.y += 0.5;
+          this.npcDistance += 0.5;
+        }
+        if (this.npcDistance >= 130 && this.npcDistance < 1000) {
+          this.image = this.sprites.right;
+          this.position.x += 0.5;
+          this.npcDistance += 0.5;
+        }
+        if (this.npcDistance >= 1000 && this.npcDistance < 1320) {
+          this.image = this.sprites.up;
+          this.position.y -= 0.5;
+          this.npcDistance += 0.5;
+        }
+        if (this.npcDistance >= 1320 && this.npcDistance < 1600) {
+          this.image = this.sprites.down;
+          this.position.y += 0.5;
+          this.npcDistance += 0.5;
+        }
+        if (this.npcDistance >= 1600 && this.npcDistance < 2300) {
+          this.image = this.sprites.right;
+          this.position.x += 0.5;
+          this.npcDistance += 0.5;
+        }
       }
-      if (this.npcDistance >= 1000 && this.npcDistance < 1320) {
-        this.image = this.sprites.up;
-        this.position.y -= 0.5;
-        this.npcDistance += 0.5;
-      }
-      if (this.npcDistance >= 1320 && this.npcDistance < 1600) {
-        this.image = this.sprites.down;
-        this.position.y += 0.5;
-        this.npcDistance += 0.5;
-      }
-      if (this.npcDistance >= 1600 && this.npcDistance < 2300) {
-        this.image = this.sprites.right;
-        this.position.x += 0.5;
-        this.npcDistance += 0.5;
-      }
-      if (this.npcDistance >= 2300 && this.npcDistance < 3000) {
-        this.image = this.sprites.left;
-        this.position.x -= 0.5;
-        this.npcDistance += 0.5;
-      }
-      if (this.npcDistance >= 3000 && this.npcDistance < 3060) {
-        this.image = this.sprites.down;
-        this.position.y += 0.5;
-        this.npcDistance += 0.5;
-      }
-      if (this.npcDistance >= 4020) {
+
+      if (this.travelDirection == "right" && this.npcDistance == 2300) {
         this.npcDistance = 0;
+        this.travelDirection = "left";
+        console.log(this.npcDistance, this.travelDirection);
+      }
+
+      if (this.travelDirection == "left") {
+        if (this.npcDistance >= 0 && this.npcDistance < 700) {
+          this.image = this.sprites.left;
+          this.position.x -= 0.5;
+          this.npcDistance += 0.5;
+        }
+        if (this.npcDistance >= 700 && this.npcDistance < 980) {
+          this.image = this.sprites.up;
+          this.position.y -= 0.5;
+          this.npcDistance += 0.5;
+        }
+        if (this.npcDistance >= 980 && this.npcDistance < 1300) {
+          this.image = this.sprites.down;
+          this.position.y += 0.5;
+          this.npcDistance += 0.5;
+        }
+        if (this.npcDistance >= 1300 && this.npcDistance < 2170) {
+          this.image = this.sprites.left;
+          this.position.x -= 0.5;
+          this.npcDistance += 0.5;
+        }
+        if (this.npcDistance >= 2170 && this.npcDistance < 2300) {
+          this.image = this.sprites.up;
+          this.position.y -= 0.5;
+          this.npcDistance += 0.5;
+        }
+        if (this.npcDistance >= 2300) {
+          this.travelDirection = "right";
+          this.npcDistance = 0;
+        }
       }
     }
   }
