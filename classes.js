@@ -131,11 +131,10 @@ class Sprite {
         }
       }
 
-      if (this.npcDistance < 130) {
+      if (this.npcDistance <= 130) {
         this.position.y += 0.5;
         this.npcDistance += 0.5;
-      }
-      if (this.npcDistance >= 130 && this.npcDistance < 1000) {
+      } else if (this.npcDistance >= 130.5 && this.npcDistance < 1000) {
         this.image = this.sprites.right;
         this.position.x += 0.5;
         this.npcDistance += 0.5;
@@ -154,6 +153,19 @@ class Sprite {
         this.image = this.sprites.right;
         this.position.x += 0.5;
         this.npcDistance += 0.5;
+      }
+      if (this.npcDistance >= 2300 && this.npcDistance < 3000) {
+        this.image = this.sprites.left;
+        this.position.x -= 0.5;
+        this.npcDistance += 0.5;
+      }
+      if (this.npcDistance >= 3000 && this.npcDistance < 3060) {
+        this.image = this.sprites.down;
+        this.position.y += 0.5;
+        this.npcDistance += 0.5;
+      }
+      if (this.npcDistance >= 4020) {
+        this.npcDistance = 0;
       }
     }
   }

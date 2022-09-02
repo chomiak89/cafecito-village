@@ -7,6 +7,8 @@ let welcomeText = document.querySelector(".welcome_text");
 
 let chatText = document.querySelector(".chatText");
 
+let cover = document.querySelector(".cover");
+
 //SHOW TITLE SCREEN AND HIDE IT
 const hideUnhide = (element) => {
   if (element.classList.contains("hidden")) {
@@ -52,6 +54,10 @@ function cycleWelcome() {
     gameStat.running = true;
   }, 4500);
 }
+
+cover.addEventListener("click", () => {
+  hideUnhide(cover);
+});
 
 // var i = 0;
 // var txt = "Lorem ipsum dummy text blabla.";

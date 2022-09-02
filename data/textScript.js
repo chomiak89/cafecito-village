@@ -13,6 +13,18 @@ let kidSpeak = [
 let kidScriptCount = 0;
 let kidScriptIndex = 0;
 
+let duckSpeak = [
+  {
+    text: "Hey.. dont tell anyone you saw me here..",
+  },
+  {
+    text: "I'm trying to hitch a ride on this wagon disguised as a barrel..",
+  },
+];
+
+let duckScriptCount = 0;
+let duckScriptIndex = 0;
+
 let textField = document.querySelector(".chatUi");
 
 function showChatUi() {

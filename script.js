@@ -173,6 +173,9 @@ femaleNpcLeftImg.src = "./assets/femaleNpc/female_npc_left.png";
 const femaleNpcRightImg = new Image();
 femaleNpcRightImg.src = "./assets/femaleNpc/female_npc_right.png";
 
+const duckImg = new Image();
+duckImg.src = "./assets/duck.png";
+
 //ASSETS
 const bonfireImg = new Image();
 bonfireImg.src = "./assets/placeables/bonfire/campfire 1-3.png";
@@ -244,6 +247,18 @@ const femaleNpc = new Sprite({
   moving: true,
   travelDirection: "down",
   type: "npc",
+});
+
+//duck npc
+const duck = new Sprite({
+  position: {
+    x: 1802,
+    y: -420,
+  },
+  image: duckImg,
+  frames: { max: 4 },
+  scale: { max: 2 },
+  moving: true,
 });
 
 //create enemies
@@ -545,6 +560,7 @@ const movables = [
   mapEnd,
   wg1,
   femaleNpc,
+  duck,
 ];
 
 //---------------------------------------------- FUNCTIONS
@@ -570,6 +586,7 @@ function enemyCollision({ rectangle1, rectangle2 }) {
 //---------------------------------------------- ANIMATION LOOP
 function animate() {
   window.requestAnimationFrame(animate);
+  console.log(femaleNpc.npcDistance);
   //draw background
   background.draw();
   //draw grass
@@ -599,6 +616,8 @@ function animate() {
   chicken.draw();
   //draw kid
   kid.draw();
+  //draw duck
+  duck.draw();
   //draw female npc
   if (gameStat.running) {
     femaleNpc.draw();
@@ -806,6 +825,27 @@ function animate() {
     kidScriptCount += 1;
   } else if (
     enemyCollision({ rectangle1: player, rectangle2: kid }) &&
+    gameStat.speaking == true &&
+    keys.Enter.pressed == true
+  ) {
+    hideChatUi();
+    gameStat.speaking = false;
+    keys.Enter.pressed = false;
+  }
+
+  if (
+    enemyCollision({ rectangle1: player, rectangle2: duck }) &&
+    keys.Enter.pressed == true &&
+    !gameStat.speaking
+  ) {
+    keys.Enter.pressed = false;
+    gameStat.speaking = true;
+    showChatUi();
+    duckScriptIndex = duckScriptCount % duckSpeak.length;
+    writeText(duckSpeak[duckScriptIndex]);
+    duckScriptCount += 1;
+  } else if (
+    enemyCollision({ rectangle1: player, rectangle2: duck }) &&
     gameStat.speaking == true &&
     keys.Enter.pressed == true
   ) {
