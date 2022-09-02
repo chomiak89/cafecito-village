@@ -15,6 +15,17 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
+body p {
+  color: white;
+  font-family: "Orbitron", sans-serif;
+  position: absolute;
+  width: 50%;
+  text-align: center;
+  left: 25%;
+}
+body p span {
+  color: pink;
+}
 .cover {
   width: 1024px;
   height: 576px;
