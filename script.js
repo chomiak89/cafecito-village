@@ -654,7 +654,7 @@ function animate() {
             ...boundary,
             position: {
               x: boundary.position.x,
-              y: boundary.position.y + 1,
+              y: boundary.position.y + 2,
             },
           },
         })
@@ -666,10 +666,10 @@ function animate() {
     }
     if (moving) {
       enemyArr.forEach((enemy) => {
-        enemy.position.y += 1;
+        enemy.position.y += 2;
       });
       movables.forEach((movable) => {
-        movable.position.y += 1;
+        movable.position.y += 2;
         player.image = player.sprites.up;
         //set previous direction, so it can be reset after attack
         player.facingPrevious = player.sprites.up;
@@ -689,7 +689,7 @@ function animate() {
             ...boundary,
             position: {
               x: boundary.position.x,
-              y: boundary.position.y - 1,
+              y: boundary.position.y - 2,
             },
           },
         })
@@ -701,10 +701,10 @@ function animate() {
     }
     if (moving) {
       enemyArr.forEach((enemy) => {
-        enemy.position.y -= 1;
+        enemy.position.y -= 2;
       });
       movables.forEach((movable) => {
-        movable.position.y -= 1;
+        movable.position.y -= 2;
         player.image = player.sprites.down;
         //set previous direction, so it can be reset after attack
         player.facingPrevious = player.sprites.down;
@@ -723,7 +723,7 @@ function animate() {
           rectangle2: {
             ...boundary,
             position: {
-              x: boundary.position.x + 1,
+              x: boundary.position.x + 2,
               y: boundary.position.y,
             },
           },
@@ -736,10 +736,10 @@ function animate() {
     }
     if (moving) {
       enemyArr.forEach((enemy) => {
-        enemy.position.x += 1;
+        enemy.position.x += 2;
       });
       movables.forEach((movable) => {
-        movable.position.x += 1;
+        movable.position.x += 2;
         player.image = player.sprites.left;
         //set previous direction, so it can be reset after attack
         player.facingPrevious = player.sprites.left;
@@ -758,7 +758,7 @@ function animate() {
           rectangle2: {
             ...boundary,
             position: {
-              x: boundary.position.x - 1,
+              x: boundary.position.x - 2,
               y: boundary.position.y,
             },
           },
@@ -771,10 +771,10 @@ function animate() {
     }
     if (moving) {
       enemyArr.forEach((enemy) => {
-        enemy.position.x -= 1;
+        enemy.position.x -= 2;
       });
       movables.forEach((movable) => {
-        movable.position.x -= 1;
+        movable.position.x -= 2;
         player.image = player.sprites.right;
         //set previous direction, so it can be reset after attack
         player.facingPrevious = player.sprites.right;
