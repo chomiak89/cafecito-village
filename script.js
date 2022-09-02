@@ -532,10 +532,6 @@ const gameStat = {
   running: false,
 };
 
-//------------->>>>>>>>>>>>>> TEST <<<<-------- REMOVE later >>>>><><><><><><
-
-/////////////      TESTING TESTING   /////////////////////////
-
 //---------------------------------------------- MOVABLES
 //create an array of items that will be moving on screen
 const movables = [
